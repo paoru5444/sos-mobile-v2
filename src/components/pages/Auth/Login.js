@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Image, TouchableHighlight } from 'react-native'
+import { Image, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 
 import AsyncStorage from '@react-native-community/async-storage'
 import { DotIndicator } from 'react-native-indicators'
@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { 
-  Button, Input, Text, Row, RowInput, Wrapper, 
+  Button, Input, Row, RowInput, Wrapper, 
 } from './AuthStyle'
 
 import ErrorAlert from '../../common/Alerts/Error'
@@ -24,9 +24,9 @@ import api from '../../../server/api';
 const SignInSchemma = yup.object().shape({
   email: yup.string()
     .email('Parece que esse email não é válido, tente outro!')
-    .required('O preenchimento do campo email é obrigatório.'),
+    .required('Email obrigatório.'),
   password: yup.string()
-    .required('A senha deve ser inserida.')
+    .required('*Senha obrigatória')
 })
 
 class SignInScreen extends Component {
@@ -87,7 +87,7 @@ class SignInScreen extends Component {
     render() {
       const { loginRequest } = this.state
       return (
-        <>
+        <KeyboardAvoidingView>
           <ErrorAlert getAlertRef={this.getAlertRef} />
           <SuccessAlert getSuccessAlertRef={this.getSuccessAlertRef} />
 
@@ -98,15 +98,18 @@ class SignInScreen extends Component {
               validationSchema={SignInSchemma}
             >
               {({ handleSubmit, handleBlur, handleChange, values, errors, touched}) => (
-                <LinearGradient colors={['#216583', '#217e83']} angle={-225}  style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                  <Image source={require('../../../assets/images/Home/logo.png')} style={{ resizeMode: 'contain', width: 200, height: 200,}} />
+                <LinearGradient colors={['#00EEB4', '#01CBC5', '#00A1D9']} style={{ width: '100%', height: '100%', justifyContent: 'flex-start', alignItems: 'center', }}>
+                   <View style={{...styles.grid, height: '30%', backgroundColor: '#fff', marginBottom: 30}}>
+                      <Image source={require('../../../assets/images/logo.png')} style={{ resizeMode: 'contain', width: 320, height: 250,}} />
+                    </View>
 
+                  <Text style={{...styles.text, alignSelf: 'center', width: '70%'}}>Usuário</Text>
                   <RowInput>
                     <Icon name="mail" size={24} color="#BDBDBD" />
                     <Input
                       onChangeText={handleChange('email')}
-                      onBlur={handleBlur('email')}
-                      onEndEditing={() => this.password.focus()}
+                      // onBlur={handleBlur('email')}
+                      // onEndEditing={() => this.password.focus()}
                       returnKeyType="next"
                       value={values.email}
                       placeholder="sos@libras.com.br"
@@ -114,29 +117,30 @@ class SignInScreen extends Component {
                     />
                   </RowInput>
 
-                  <Row>
+                  <Row style={{justifyContent: 'flex-start'}}>
                     { errors.email && touched.email && (
-                      <Text color="#e74c3c">{errors.email}</Text>
+                      <Text style={{color: "#e57373", fontSize: 16, fontWeight: 'bold'}}>{errors.email}</Text>
                     )}
                   </Row>
-                
+                      
+                  <Text style={{...styles.text, alignSelf: 'center', width: '70%'}}>Senha</Text>
                   <RowInput>
                     <Icon name="key" size={24} color="#BDBDBD" />
                     <Input
                       ref={password => this.password = password}
                       onChangeText={handleChange('password')}
-                      onBlur={handleBlur('password')}
+                      // onBlur={handleBlur('password')}
                       value={values.password}
                       secureTextEntry
                       returnKeyType="send"
                       placeholder="********"
-                      onSubmitEditing={handleSubmit}
+                      // onSubmitEditing={handleSubmit}
                     />
                   </RowInput>
 
-                  <Row>
+                  <Row style={{justifyContent: 'flex-start'}}>
                     { errors.password && touched.password && (
-                      <Text color="#e74c3c">{errors.password}</Text>
+                      <Text style={{color: "#e57373", fontSize: 16, fontWeight: 'bold'}}>{errors.password}</Text>
                     )}
                   </Row>
 
@@ -145,29 +149,36 @@ class SignInScreen extends Component {
                       { loginRequest ? (
                         <DotIndicator count={3} color='white' size={8} />
                       ) : (
-                        <Text color="#f2f2f7">Entrar</Text>
+                        <Text style={styles.text}>Entrar</Text>
                       )}
                     </Button>
                   </Row>
 
-                  {/* <Row>
-                    <TouchableHighlight onPress={() => this.goTo('Reset')}>
-                      <Text color="#f2f2f7">Esqueci minha senha</Text>
-                    </TouchableHighlight>
-                  </Row> */}
-
-                  <Row style={{ marginTop: 40 }}>
+                  <Row style={{ marginTop: 20 }}>
                     <Button onPress={() => this.goTo('Register')} transparent="transparent" outlined="#f2f2f7" border="1px">
-                      <Text color="#f2f2f7">Cadastre-se</Text>
+                      <Text style={styles.text}>Cadastre-se</Text>
                     </Button>
                   </Row>
                 </LinearGradient>
               )}
             </Formik>
           </Wrapper>
-        </>
+        </KeyboardAvoidingView>
       );
     }
 }
+
+const styles = StyleSheet.create({
+  grid: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    color: "#eee",
+    fontWeight: 'bold',
+    fontSize: 20,
+  }
+})
 
 export default SignInScreen;

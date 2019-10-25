@@ -20,7 +20,7 @@ function ChildrenMenu(props) {
 
     return (
       <View style={styles.wrapper}>
-        <LinearGradient colors={['#216583', '#216583']} style={styles.backgroundGradient}>
+        <LinearGradient colors={['#00F0B3', '#1EC2E7']} style={styles.backgroundGradient}>
           <View style={styles.closeRow}>
             <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
           </View>

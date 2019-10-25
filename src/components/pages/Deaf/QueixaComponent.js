@@ -1,6 +1,6 @@
 import React from 'react'
 import { 
-  StyleSheet, ScrollView, View, Image, Text,  TouchableNativeFeedback, TouchableOpacity
+  StyleSheet, ScrollView, View, Image, Text, TouchableOpacity
 } from 'react-native'
 
 import {
@@ -59,9 +59,9 @@ const Queixa = ({ next, queixas, getQueixaInput, adicionarQueixa, goTo, queixaIn
           </View>
 
           {queixas.map((queixa, index) => (
-            < TouchableNativeFeedback onPress={(() => removeQueixa(queixa))} style={{...styles.row, width: '80%', flexDirection: 'column', marginVertical: 0, marginBottom: 10}}  key={index}>
+            < TouchableOpacity onPress={(() => removeQueixa(queixa))} style={{...styles.row, width: '80%', flexDirection: 'column', marginVertical: 0, marginBottom: 10}}  key={index}>
               <Text style={styles.text}><Icon name="x-circle" size={20} color="#2c2c2c" /> {queixa} </Text>
-            </ TouchableNativeFeedback>
+            </ TouchableOpacity>
           ))}
 
           <Button onPress={() => next()}>

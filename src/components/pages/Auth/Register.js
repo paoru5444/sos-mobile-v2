@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Image } from 'react-native'
+import { Image, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 
 import AsyncStorage from '@react-native-community/async-storage'
 import { DotIndicator } from 'react-native-indicators'
@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { 
-  Button, Input, Text, Row, RowInput, Wrapper, 
+  Button, Input, Row, RowInput, Wrapper, 
 } from './AuthStyle'
 
 import ErrorAlert from '../../common/Alerts/Error'
@@ -23,12 +23,12 @@ import api from '../../../server/api';
 // Esquema de validação definido com mensagens
 const SignInSchemma = yup.object().shape({
   name: yup.string()
-    .required('Campo Obrigatório.'),
+    .required('*Campo Obrigatório.'),
   email: yup.string()
     .email('Parece que esse email não é válido, tente outro!')
-    .required('O preenchimento do campo email é obrigatório.'),
+    .required('*Email obrigatório.'),
   password: yup.string()
-    .required('A senha deve ser inserida.')
+    .required('Senha obrigatória.')
 })
 
 class RegisterScreen extends Component {
@@ -91,7 +91,7 @@ class RegisterScreen extends Component {
     render() {
       const { registerRequest } = this.state
       return (
-        <>
+        <KeyboardAvoidingView>
           <SuccessAlert getSuccessAlertRef={this.getSuccessAlertRef} />
           <ErrorAlert getAlertRef={this.getAlertRef} />
 
@@ -102,73 +102,75 @@ class RegisterScreen extends Component {
               validationSchema={SignInSchemma}
             >
               {({ handleSubmit, handleBlur, handleChange, values, errors, touched}) => (
-                <LinearGradient colors={['#216583', '#217e83']} angle={-225}  style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                  <Image source={require('../../../assets/images/Home/logo.png')} style={{ resizeMode: 'contain', width: 200, height: 200 }} />
+                <LinearGradient colors={['#00EEB4', '#01CBC5', '#00A1D9']} angle={-225}  style={{ width: '100%', height: '100%', justifyContent: 'flex-start', alignItems: 'center' }}>
+                  <View style={{...styles.grid, height: '30%', backgroundColor: '#fff', marginBottom: 30}}>
+                    <Image source={require('../../../assets/images/logo.png')} style={{ resizeMode: 'contain', width: 320, height: 250,}} />
+                  </View>
 
-                  <Row>
-                    { errors.name && touched.name && (
-                      <Text color="#e74c3c">{errors.name}</Text>
-                    )}
-                  </Row>
-
+                  <Text style={{...styles.text, alignSelf: 'center', width: '70%'}}>Usuário</Text>
                   <RowInput>
                     <Icon name="user" size={24} color="#BDBDBD" />
                     <Input
                       onChangeText={handleChange('name')}
-                      onBlur={handleBlur('name')}
+                      // onBlur={handleBlur('name')}
                       value={values.name}
                       placeholder="seu nome"
                       returnKeyType="next"
-                      onEndEditing={() => this.email.focus()}
+                      // onEndEditing={() => this.email.focus()}
                     />
                   </RowInput>
-
-                  <Row>
-                    { errors.email && touched.email && (
-                      <Text color="#e74c3c">{errors.email}</Text>
+                  <Row style={{justifyContent: 'flex-start'}}>
+                    { errors.name && touched.name && (
+                      <Text style={{color: "#e57373", fontSize: 16, fontWeight: 'bold'}}>{errors.name}</Text>
                     )}
                   </Row>
 
+                  <Text style={{...styles.text, alignSelf: 'center', width: '70%'}}>Email</Text>
                   <RowInput>
                     <Icon name="mail" size={24} color="#BDBDBD" />
                     <Input
                       onChangeText={handleChange('email')}
-                      onBlur={handleBlur('email')}
+                      // onBlur={handleBlur('email')}
                       value={values.email}
                       placeholder="sos@libras.com.br"
                       autoCapitalize='none'
                       returnKeyType="next"
-                      onEndEditing={() => this.password.focus()}
+                      // onEndEditing={() => this.password.focus()}
                       ref={email => this.email = email}
                     />
                   </RowInput>
-                
-                  <Row>
-                    { errors.password && touched.password && (
-                      <Text color="#e74c3c">{errors.password}</Text>
+                  <Row style={{justifyContent: 'flex-start'}}>
+                    { errors.email && touched.email && (
+                      <Text style={{color: "#e57373", fontSize: 16, fontWeight: 'bold'}}>{errors.email}</Text>
                     )}
                   </Row>
 
+                  <Text style={{...styles.text, alignSelf: 'center', width: '70%'}}>Senha</Text>
                   <RowInput>
                     <Icon name="key" size={24} color="#BDBDBD" />
                     <Input
                       onChangeText={handleChange('password')}
-                      onBlur={handleBlur('password')}
+                      // onBlur={handleBlur('password')}
                       value={values.password}
                       secureTextEntry
                       returnKeyType="send"
                       placeholder="********"
-                      onSubmitEditing={handleSubmit}
+                      // onSubmitEditing={handleSubmit}
                       ref={password => this.password = password}
                     />
                   </RowInput>
+                  <Row style={{justifyContent: 'flex-start'}}>
+                    { errors.password && touched.password && (
+                      <Text style={{color: "#e57373", fontSize: 16, fontWeight: 'bold'}}>{errors.password}</Text>
+                    )}
+                  </Row>
 
                   <Row>
                     <Button onPress={handleSubmit}>
                     { registerRequest ? (
                         <DotIndicator count={3} color='white' size={8} />
                       ) : (
-                        <Text color="#f2f2f7">Finalizar Cadastro</Text>
+                        <Text style={styles.text}>Finalizar Cadastro</Text>
                       )}
                     </Button>
                   </Row>
@@ -176,9 +178,22 @@ class RegisterScreen extends Component {
               )}
             </Formik>
           </Wrapper>
-        </>
+        </KeyboardAvoidingView>
       );
     }
 }
+
+const styles = StyleSheet.create({
+  grid: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    color: "#eee",
+    fontWeight: 'bold',
+    fontSize: 20,
+  }
+})
 
 export default RegisterScreen;

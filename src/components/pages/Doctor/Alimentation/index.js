@@ -15,7 +15,7 @@ import * as yup from 'yup';
 const SignInSchemma = yup.object().shape({
   name: yup.string()
     .required('Nome obrigatório'),
-  foodType: yup.string()
+  description: yup.string()
     .required('Classificação obrigatória'),
 })
 
@@ -35,11 +35,11 @@ export function alimentationOptions({ navigate }) {
 function Alimentation(props) {
 
   const [name, setName] = useState('')
-  const [foodType, setFoodType] = useState('')
+  const [description, setDescription] = useState('')
   const [anamnese, setAnamnese] = useState({})
   const [sendLoad, setSendLoad] = useState(false)
 
-  const foodTypeRef = useRef()
+  const descriptionRef = useRef()
 
   useEffect(() => {
     setAnamnese(props.navigation.getParam('anamnese'))
@@ -49,11 +49,11 @@ function Alimentation(props) {
     try {
       setSendLoad(true)
       const save = await api.post('/alimentation', {
-        name: values.name,  foodType: values.foodType, anamneseId: anamnese._id
+        name: values.name,  description: values.description, anamneseId: anamnese._id
       })
 
       setName('')
-      setFoodType('')
+      setDescription('')
 
       setSendLoad(false)
       props.navigation.state.params.onGoBack();
@@ -74,11 +74,11 @@ function Alimentation(props) {
 
       <View style={styles.row}>
         <Image source={require('../../../../assets/images/diet.png')} style={styles.image} /> 
-        <Text color="#2c2c2c" size="20px">Selecione os alimentos{'\n'}que serão evitados.</Text>
+        <Text color="#2c2c2c" size="20px">Fale sobre os alimentos{'\n'}que serão evitados.</Text>
       </View>
 
       <Formik
-        initialValues={{ name: '', foodType: '' }}
+        initialValues={{ name: '', description: '' }}
         onSubmit={values => saveHandler(values)}
         validationSchema={SignInSchemma}
       >
@@ -92,7 +92,7 @@ function Alimentation(props) {
                   onChangeText={handleChange('name')}
                   value={values.name}
                   returnKeyType="next"
-                  onEndEditing={() => foodTypeRef.current.focus()}
+                  onEndEditing={() => descriptionRef.current.focus()}
                 />
               </View>
 
@@ -104,28 +104,29 @@ function Alimentation(props) {
             </View>
 
             <View style={{...styles.row, marginBottom: 0}}>
-              <Text color="#2c2c2c" size="18px" style={{ alignSelf: 'flex-start', left: 10}}>Classificação do alimento</Text>
-              <View style={styles.inputRow}>
+              <Text color="#2c2c2c" size="18px" style={{ alignSelf: 'flex-start', left: 10}}>Observações sobre o alimento</Text>
+              <View style={{...styles.inputRow}}>
                 <Input
-                  placeholder="ex: Vegetal"
-                  onChangeText={handleChange('foodType')}
-                  value={values.foodType}
-                  returnKeyType="send"
-                  onEndEditing={() => handleSubmit()}
-                  ref={ref => foodTypeRef.current = ref}
+                  placeholder="ex: Evite churrasco"
+                  onChangeText={handleChange('description')}
+                  value={values.description}
+                  returnKeyType="done"
+                  ref={ref => descriptionRef.current = ref}
                 />
               </View>
               
               <View style={{...styles.row, marginBottom: 0}}>
-                { errors.foodType && touched.foodType && (
-                  <Text style={{...styles.text, color: "#e74c3c", marginBottom: 10}} color="#e74c3c">{errors.foodType}</Text>
+                { errors.description && touched.description && (
+                  <Text style={{...styles.text, color: "#e74c3c", marginBottom: 10}} color="#e74c3c">{errors.description}</Text>
                 )}
               </View>
               
             </View>
 
-            <View style={{...styles.row, width: '80%', alignItems: 'center', flexDirection: 'column'}}>
-              <Button onPress={() => handleSubmit()}>
+            <View style={{...styles.row, width: '90%', alignItems: 'center', left: 15, flexDirection: 'column'}}>
+              <Button onPress={() => {
+                handleSubmit()
+              }}>
                 { sendLoad ? (
                   <DotIndicator count={3} color='white' size={8} />
                 ) : (
@@ -198,6 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f7',
     borderRadius: 30,
     borderBottomColor: '#f2f2f7',
+    flexWrap: 'wrap',
   },
   addButton: {
     width: 60,

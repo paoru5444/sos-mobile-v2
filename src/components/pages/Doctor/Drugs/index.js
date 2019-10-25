@@ -167,8 +167,7 @@ function Drugs(props) {
                       placeholder="ex: 300g"
                       onChangeText={handleChange('dosage')}
                       value={values.dosage}
-                      returnKeyType="send"
-                      onEndEditing={() => handleSubmit()}
+                      returnKeyType="done"
                       ref={ref => dosageRef.current = ref}
                     />
                   </View>
@@ -181,7 +180,9 @@ function Drugs(props) {
                 </View>
 
                 <View style={{...styles.row, width: '80%', alignItems: 'center', flexDirection: 'column'}}>
-                  <Button onPress={() => handleSubmit()}>
+                  <Button onPress={() => {
+                     handleSubmit()
+                  }}>
                     { sendLoad ? (
                       <DotIndicator count={3} color='white' size={8} />
                     ) : (

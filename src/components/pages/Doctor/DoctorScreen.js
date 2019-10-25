@@ -45,7 +45,6 @@ function DoctorScreen(props) {
     try {
       const response = await api.get(`/alimentation/${anamnese._id}`)
       setAlimentation(response.data)
-      console.log(response.data)
     } catch(error) {
       console.log(error.response.data)
     }
@@ -54,7 +53,6 @@ function DoctorScreen(props) {
   async function getDrugs(){
     try {
       const response = await api.get(`/drugs/${anamnese._id}`)
-      console.log(response.data)
       setDrugs(response.data)
     } catch(error) {
       console.log(error.response.data)
@@ -88,7 +86,7 @@ function DoctorScreen(props) {
           </Text>
         </View>
           <View style={styles.card}>
-            <Text color="#2c2c2c" size="16px">Queixas: {anamnese.queixas.join('') || 'Sem queixas cadastradas' }</Text>
+            <Text color="#2c2c2c" size="16px">Queixas: {anamnese.queixas.join(', ') || 'Sem queixas cadastradas' }</Text>
             <Text color="#2c2c2c" size="16px">Duracao: {anamnese.duracao + ' dia(s)' || 'Sem duração'}</Text>
             <Text color="#2c2c2c" size="16px">Intensidade: {anamnese.intensidade || 'Sem intensidade'}</Text>  
             <Text color="#2c2c2c" size="16px">Frequencia: {anamnese.frequencia + ' em ' + anamnese.frequencia + 'hora(s)' || 'Sem frequencia'}</Text>
@@ -134,7 +132,13 @@ function DoctorScreen(props) {
             </View>
           </View>
 
-          <Button onPress={() => saveHandler()}>
+          <Button onPress={() => {
+            if(sendLoad === false) {
+              saveHandler()
+            } else {
+              return null
+            }
+          }}>
             { sendLoad ? (
               <DotIndicator count={3} color='white' size={8} />
             ) : (
@@ -198,6 +202,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '95%',
+    maxHeight: 1000,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',

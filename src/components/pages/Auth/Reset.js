@@ -98,7 +98,7 @@ class ResetPasswordScreen extends Component {
             validationSchema={ResetPasswordShemma}
           >
             {({ handleSubmit, handleBlur, handleChange, values, errors, touched}) => (
-              <LinearGradient colors={['#216583', '#217e83']} angle={-225}  style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+              <LinearGradient colors={['#00F0B3', '#1EC2E7']} angle={-225}  style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
                 <Image source={require('../../../assets/images/Home/logo.png')} style={{ resizeMode: 'contain', width: 200, height: 200, elevation: 4, }} />
                 
                 <Row>

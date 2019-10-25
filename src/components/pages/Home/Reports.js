@@ -79,17 +79,21 @@ function Reports(props) {
 
   return (
     <View style={styles.wrapper}>
-      <LinearGradient colors={['#216583', '#217e83']} style={{width: '100%', height: '100%'}}>
+      <LinearGradient colors={['#00F0B3', '#1EC2E7']} style={{width: '100%', height: '100%'}}>
       { reports && reports.length > 0 && (
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           { reports.map((report, index) => (
               <TouchableOpacity style={styles.row} key={index} onPress={() => {
                 navigate('ReportDetail', { anamneseId: report._id })
               }} >
-                <Image source={require('../../../assets/images/man.png')} style={styles.imageCard}/>
+                {report.hasRecomendation === 0 ? (
+                  <Image source={require('../../../assets/images/man.png')} style={styles.imageCard}/>
+                ) : (
+                  <Image source={require('../../../assets/images/doctor.png')} style={styles.imageCard}/>
+                )}
                 <ReportCard>
                   <Text>Queixa</Text>
-                  <Text>{report.queixas.join(' e ') || "Nenhuma queixa cadastrada"}</Text>
+                  <Text>{report.queixas.join(', ') || "Nenhuma queixa cadastrada"}</Text>
                 </ReportCard>
               </TouchableOpacity>
             ))}

@@ -17,7 +17,7 @@ export const Wrapper = styled.View`
   justify-content: center;
 `
 export const Row = styled.View`
-  width: 80%;
+  width: 76%;
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -25,21 +25,22 @@ export const Row = styled.View`
 `
 
 export const RowInput = styled.View`
-  width: 80%;
+  width: 78%;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   margin-bottom: 10px;
   background-color: #f2f2f7;
-  border-radius: 30px;
+  border-radius: 35px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 `
 
 export const Input = styled.TextInput`
   width: 75%;
-  height: 60px;
+  height: 70px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `
 
 export const Button = styled.TouchableHighlight`
@@ -47,10 +48,8 @@ export const Button = styled.TouchableHighlight`
   height: 60px;
   align-items: center;
   justify-content: center;
-  background-color:${props => props.transparent || '#216583'};
+  background-color:${props => props.transparent || '#0099B2'};
   border-color: ${props => props.outlined || 'transparent'}
   border-width: ${props => props.border || 0}
   border-radius: 30px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  elevation: 1;
 `
