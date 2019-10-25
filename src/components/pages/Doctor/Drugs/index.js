@@ -110,7 +110,7 @@ function Drugs(props) {
                       onChangeText={handleChange('name')}
                       value={values.name}
                       returnKeyType="next"
-                      onEndEditing={() => useModeRef.current.focus()}
+                      // onEndEditing={() => useModeRef.current.focus()}
                     />
                   </View>
 
@@ -129,7 +129,7 @@ function Drugs(props) {
                       onChangeText={handleChange('useMode')}
                       value={values.useMode}
                       returnKeyType="next"
-                      onEndEditing={() => periodRef.current.focus()}
+                      // onEndEditing={() => periodRef.current.focus()}
                       ref={ref => useModeRef.current = ref}
                     />
                   </View>
@@ -149,7 +149,7 @@ function Drugs(props) {
                       onChangeText={handleChange('period')}
                       value={values.period}
                       returnKeyType="next"
-                      onEndEditing={() => dosageRef.current.focus()}
+                      // onEndEditing={() => dosageRef.current.focus()}
                       ref={ref => periodRef.current = ref}
                     />
                   </View>

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   row: {
-    width: '95%',
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     height: '25%',
     backgroundColor: "transparent",
     padding: 0,
-    marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
     resizeMode: 'cover'
@@ -68,21 +67,22 @@ const styles = StyleSheet.create({
   imageBanner: {
     width: '100%',
     height: '100%',
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   image: {
-    width: 200,
+    width: 350,
     height: 200,
-    marginVertical: 20
+    resizeMode: 'contain',
   },
   imagePiramide: {
     width: 90,
     height: 90,
   },
   text: {
-    color: "#2c2c2c",
-    fontSize: 18,
-    textAlign: 'center'
+    color: "#1d829b",
+    fontSize: 16,
+    textAlign: 'justify',
+    fontWeight: 'bold',
   }
 })
 

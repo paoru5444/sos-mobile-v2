@@ -93,7 +93,7 @@ function Alimentation(props) {
                   onChangeText={handleChange('name')}
                   value={values.name}
                   returnKeyType="next"
-                  onEndEditing={() => descriptionRef.current.focus()}
+                  // onEndEditing={() => descriptionRef.current.focus()}
                 />
               </View>
 

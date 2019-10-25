@@ -84,6 +84,16 @@ export default function ReportDetail(props) {
     }
   }
 
+  async function deleteAnamnese() {
+    const anamneseId = props.navigation.getParam('anamneseId')
+    try {
+      const response = await api.delete('/anamnese/' + anamneseId)
+      props.navigation.navigate('Reports')
+    } catch(error) {
+      console.log(error.response)
+    }
+  }
+
   return (
     <ScrollView>
       <View style={styles.wrapper}>
@@ -161,6 +171,11 @@ export default function ReportDetail(props) {
         <TouchableOpacity style={styles.row} onPress={() => submitAnamnese('Doctor')}>
           <Image source={require('../../../assets/images/doctor.png')} style={styles.image} />
           <Text color="#2c2c2c">Sou médico quero recomendar.</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.row} onPress={() => deleteAnamnese('Doctor')}>
+          <Image source={require('../../../assets/images/delete.png')} style={styles.image} />
+          <Text color="#2c2c2c">Deletar queixa.</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
