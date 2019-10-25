@@ -2,7 +2,7 @@
 
    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">
-            @color/primary
+            #1d829b
         </item>
 
         <item name="android:windowBackground">@drawable/background</item>

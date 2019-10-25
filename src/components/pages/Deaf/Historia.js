@@ -38,7 +38,7 @@ const Historia =  ({
             < TouchableNativeFeedback style={{ padding: 10 }} onPress={() => {
               getDuracao('-')
             }}>
-              <Feather name="minus-circle" size={30} color="#215583" />
+              <Feather name="minus-circle" size={30} color="#0099B2" />
             </ TouchableNativeFeedback>
             
             <Text style={{...styles.text, fontSize: 18}}>{duracao} dia(s)</Text>
@@ -46,7 +46,7 @@ const Historia =  ({
             < TouchableNativeFeedback style={{ padding: 10 }} onPress={() => {
               getDuracao('+')
             }}>
-              <Feather name="plus-circle" size={30} color="#215583" />
+              <Feather name="plus-circle" size={30} color="#0099B2" />
             </ TouchableNativeFeedback>
           </View>
         </View>
@@ -58,7 +58,7 @@ const Historia =  ({
             < TouchableNativeFeedback style={{ padding: 10 }} onPress={() => {
               getFrequencia('-')
             }}>
-              <Feather name="minus-circle" size={30} color="#215583" />
+              <Feather name="minus-circle" size={30} color="#0099B2" />
             </ TouchableNativeFeedback>
 
             <Text style={{...styles.text, fontSize: 16}}>{frequencia} em {frequencia} horas </Text>
@@ -66,7 +66,7 @@ const Historia =  ({
             < TouchableNativeFeedback style={{ padding: 10 }} onPress={() => {
               getFrequencia('+')
             }}>
-              <Feather name="plus-circle" size={30} color="#215583" />
+              <Feather name="plus-circle" size={30} color="#0099B2" />
             </ TouchableNativeFeedback>
           </View>
         </View>

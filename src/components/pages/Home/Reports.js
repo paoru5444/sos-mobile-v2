@@ -23,10 +23,11 @@ export function reportsNavigation({ navigation }) {
   return {
     title: 'Histórico de Exames',
     headerTitleStyle: {
-      color: '#f2f2f7'
+      color: '#f2f2f7',
+      fontWeight: 'bold'
     },
     headerStyle: {
-      backgroundColor: '#216583',
+      backgroundColor: '#1d829b',
       elevation: 0
     },
     headerTintColor: '#f2f2f7',
@@ -37,8 +38,8 @@ export function reportsNavigation({ navigation }) {
         closeHandle()
       }
     }}>
-                  <Feather name={!openMenu ? "menu" : "x"} size={30} color="#fff" style={{ paddingLeft: 20}} />
-                </ TouchableWithoutFeedback>
+      <Feather name={!openMenu ? "menu" : "x"} size={30} color="#fff" style={{ paddingLeft: 20}} />
+    </ TouchableWithoutFeedback>
   }
 }
 
@@ -79,7 +80,7 @@ function Reports(props) {
 
   return (
     <View style={styles.wrapper}>
-      <LinearGradient colors={['#00F0B3', '#1EC2E7']} style={{width: '100%', height: '100%'}}>
+      <LinearGradient colors={['#01CBC5', '#00A1D9']} style={{width: '100%', height: '100%'}}>
       { reports && reports.length > 0 && (
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           { reports.map((report, index) => (
@@ -111,7 +112,7 @@ function Reports(props) {
 
       { Boolean(openMenu) === false && reports.length !== 0 &&
         <Fab onPress={() => navigate('Deaf')}>
-          <Feather name="plus" size={26} color="#f2f2f7" />
+          <Feather name="plus" size={35} color="#f2f2f7" />
         </Fab>  
       }
 

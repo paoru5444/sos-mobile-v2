@@ -8,10 +8,11 @@ export function perfilOptions({ navigate }) {
     title: 'Perfil',
     headerTintColor: '#f2f2f7',
       headerStyle: {
-        backgroundColor: '#215583'
+        backgroundColor: '#1d829b'
       },
       headerTitleStyle: {
         color: '#f2f2f7',
+        fontWeight: 'bold',
       },
   }
 }

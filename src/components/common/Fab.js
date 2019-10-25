@@ -9,7 +9,7 @@ export const Fab = styled.TouchableOpacity`
   position: absolute;
   right: 30px;
   bottom: 30px;
-  background-color: #215583;
+  background-color: #01CBC5;
   box-shadow: 3px 9px 21px rgba(125,141,173,0.45);
-  elevation: 4;
+  elevation: 1;
 `

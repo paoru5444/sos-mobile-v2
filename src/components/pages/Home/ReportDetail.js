@@ -7,10 +7,11 @@ export function reportDetailNavigation() {
   return {
     title: 'Detalhes',
     headerTitleStyle: {
-      color: '#f2f2f7'
+      color: '#f2f2f7',
+      fontWeight: 'bold',
     },
     headerStyle: {
-      backgroundColor: '#216583',
+      backgroundColor: '#1d829b',
     },
     headerTintColor: '#f2f2f7',
   }

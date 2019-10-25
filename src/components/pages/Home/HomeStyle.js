@@ -15,7 +15,7 @@ export const Button = styled.TouchableHighlight`
   height: 60px;
   align-items: center;
   justify-content: center;
-  background-color:${props => props.transparent || '#216583'};
+  background-color:${props => props.transparent || '#0099B2'};
   border-color: ${props => props.outlined || 'transparent'}
   border-width: ${props => props.border || 0}
   border-radius: 30px;

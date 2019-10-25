@@ -20,8 +20,8 @@ function ChildrenMenu(props) {
 
     return (
       <View style={styles.wrapper}>
-        <LinearGradient colors={['#00F0B3', '#1EC2E7']} style={styles.backgroundGradient}>
-          <View style={styles.closeRow}>
+        <LinearGradient colors={['#00EEB4', '#01CBC5', '#00A1D9']} style={styles.backgroundGradient}>
+          <View style={{...styles.closeRow, height: '30%', backgroundColor: '#fff', marginBottom: 30}}>
             <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
           </View>
         
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'absolute',
-    top: 80,
+    top: 0,
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 250,
+    height: 250,
     resizeMode: 'contain',
     alignItems: 'center',
     justifyContent: 'center',
@@ -97,8 +97,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: 18,
+    fontSize: 30,
     marginVertical: 10,
-    color: '#f2f2f7'
+    color: '#eee',
+    fontWeight: 'bold'
   },
 })

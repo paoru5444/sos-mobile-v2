@@ -6,10 +6,11 @@ export function sobreOptions({ navigate }) {
     title: 'Sobre o SOS LIBRAS',
     headerTintColor: '#f2f2f7',
       headerStyle: {
-        backgroundColor: '#215583'
+        backgroundColor: '#1d829b'
       },
       headerTitleStyle: {
         color: '#f2f2f7',
+        fontWeight: 'bold',
       },
   }
 }
